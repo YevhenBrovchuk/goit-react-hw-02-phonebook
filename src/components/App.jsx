@@ -50,7 +50,6 @@ export class App extends Component {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          alignItems: 'center',
           fontSize: 40,
           color: '#010101',
           alignItems: `flex-start`,
