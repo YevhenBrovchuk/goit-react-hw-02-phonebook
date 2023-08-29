@@ -12,6 +12,15 @@ export class App extends Component {
   };
 
   addContacts = newContact => {
+    const isexsist = this.state.contacts.find(
+      contactName =>
+        contactName.name.toLowerCase() === newContact.name.toLowerCase()
+    );
+
+    if (isexsist) {
+      alert(`${newContact.name} is already in contacts`);
+      return;
+    }
     this.setState(prevState => ({
       contacts: [...prevState.contacts, { id: nanoid(), ...newContact }],
     }));
@@ -28,17 +37,9 @@ export class App extends Component {
   };
 
   getVisibleContact = () => {
-    if (this.state.filter) {
-      const con = this.state.contacts.filter(
-        contact =>
-          contact.name &&
-          contact.name.toLowerCase() &&
-          contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
-      );
-      console.log(con);
-      return con;
-    }
-    return this.state.contacts;
+    return this.state.contacts.filter(contact =>
+      contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
+    );
   };
 
   render() {
